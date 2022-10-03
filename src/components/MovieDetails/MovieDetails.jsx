@@ -1,4 +1,4 @@
-import { Movies } from 'pages/Movies';
+// import { Movies } from 'pages/Movies';
 import { useEffect, useState } from 'react';
 import { NavLink, useParams, Link, useLocation  } from 'react-router-dom';
 import { getMovieById } from '../../api/movieDBApi';
