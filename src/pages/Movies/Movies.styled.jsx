@@ -96,6 +96,7 @@ export const HomeText = styled.p`
 	font-family: 'Scada', sans-serif;
 	font-size: 16px;
 	color: white;
+	width: 290px;
 
 	&:focus,
 	&:hover {

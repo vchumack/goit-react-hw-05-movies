@@ -9,10 +9,9 @@ import {
 	MovieItem,
 	StyledLink,
 	HomeImg,
-	HomeText
+	HomeText,
 } from './Movies.styled';
 import { Loader } from 'components/Loader';
-
 
 export function Movies() {
 	//для хранения значений с инпута
@@ -63,21 +62,25 @@ export function Movies() {
 			) : (
 				<MovieList>
 					{movies &&
-						movies.map(({ id, title, poster_path }) => (
-							<MovieItem key={id}>
-								<StyledLink to={`/movies/${id}`} state={{ from: location }}>
-									<HomeImg
-										alt={title}
-										src={`http://image.tmdb.org/t/p/w500${poster_path}`}
-										// width={200}
-									/>
-									<HomeText>{title}</HomeText>
-								</StyledLink>
-							</MovieItem>
-						))}
+						movies.map(({ id, title, poster_path }) => {
+							const checkImage = poster_path
+								? `http://image.tmdb.org/t/p/w500${poster_path}`
+								: 'https://archives.csusm.edu/student-newspapers/files/original/471bb8c5afdfe8e769c93f1aee2ad1c1.jpg';
+							return (
+								<MovieItem key={id}>
+									<StyledLink to={`/movies/${id}`} state={{ from: location }}>
+										<HomeImg
+											alt={title}
+											src={checkImage}
+											// width={200}
+										/>
+										<HomeText>{title}</HomeText>
+									</StyledLink>
+								</MovieItem>
+							);
+						})}
 				</MovieList>
 			)}
 		</>
 	);
 }
-

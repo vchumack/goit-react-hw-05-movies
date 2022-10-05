@@ -21,4 +21,5 @@ export const CastName = styled.h2`
 export const CastCharacter = styled.h2`
 	font-size: 12px;
    color: #e3cfbfed;
+	width: 199px;
 `;

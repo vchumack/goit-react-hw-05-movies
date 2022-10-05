@@ -15,3 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 		</ThemeProvider>
 	</React.StrictMode>
 );
+
+/*
+<BrowserRouter basename="/goit-react-hw-05-movies/">
+*/
