@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { getMoviesByQuery } from '../../api/movieDBApi';
 import {
 	Form,
@@ -10,6 +10,7 @@ import {
 	StyledLink,
 	HomeImg,
 	HomeText,
+	NotFoundText
 } from './Movies.styled';
 import { Loader } from 'components/Loader';
 
@@ -24,7 +25,16 @@ export function Movies() {
 	//для хранения ссылки на нашу форму
 	const form = useRef();
 
+	//для хранения серча
+	const [searchParams, setSearchParams] = useSearchParams();
+
 	const location = useLocation();
+	useEffect(() => {
+		const getLastQuery = searchParams.get('name');
+		if (getLastQuery) {
+			setQuery(getLastQuery);
+	}
+}, [searchParams])
 
 	useEffect(() => {
 		if (query) {
@@ -33,13 +43,14 @@ export function Movies() {
 				.then(({ data }) => {
 					console.log(data);
 					setMovies(data.results);
+					setSearchParams({ name: query });
 				})
 				.catch(console.log())
 				.finally(() => {
 					setIsLoading(false);
 				});
 		}
-	}, [query]);
+	}, [query, setSearchParams]);
 
 	const handleSubmitForm = e => {
 		e.preventDefault();
@@ -57,6 +68,7 @@ export function Movies() {
 				<Button type="submit">Search</Button>
 			</Form>
 
+			{movies?.length < 1 && ! null && <NotFoundText>🧡Movies not found. Please, try again🧡</NotFoundText>}
 			{isLoading ? (
 				<Loader />
 			) : (
@@ -72,7 +84,6 @@ export function Movies() {
 										<HomeImg
 											alt={title}
 											src={checkImage}
-											// width={200}
 										/>
 										<HomeText>{title}</HomeText>
 									</StyledLink>

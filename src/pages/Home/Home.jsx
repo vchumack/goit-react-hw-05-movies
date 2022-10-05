@@ -48,7 +48,6 @@ export function Home() {
 									<HomeImg
 										alt={title}
 										src={`http://image.tmdb.org/t/p/w500${poster_path}`}
-										// width={200}
 									/>
 									<HomeText>{title}</HomeText>
 								</StyledLink>

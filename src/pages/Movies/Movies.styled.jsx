@@ -103,3 +103,9 @@ export const HomeText = styled.p`
 		color: #de6b10;
 	}
 `;
+
+export const NotFoundText = styled.p`
+color: white;
+font-size: 20px;
+text-align: center;
+`

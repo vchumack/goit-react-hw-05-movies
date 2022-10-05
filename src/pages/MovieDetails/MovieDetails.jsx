@@ -12,7 +12,6 @@ import {
 	MovieGenresText,
 	MovieAdditionalList,
 	MovieAdditionalLink,
-	// MovieAdditionalBox,
 	MovieAdditionalTitle
 	
 } from './MovieDetails.styled';
@@ -28,7 +27,7 @@ export function MovieDetails({ backPath }) {
 	const [movie, setMovie] = useState(null);
 
 	const location = useLocation();
-	const locationRef = location.state?.from ?? '/';
+	const locationRef = location.state?.from ?? '/movies';
 
 	// вызов useNavigate
 	// const navigate = useNavigate();
@@ -85,12 +84,12 @@ export function MovieDetails({ backPath }) {
 				<MovieAdditionalTitle>Additional information</MovieAdditionalTitle>
 				<MovieAdditionalList>
 					<li>
-						<MovieAdditionalLink to="cast" state={{ from: location }}>
+						<MovieAdditionalLink to="cast" state={{ from: location.state?.from }}>
 							Cast
 						</MovieAdditionalLink>
 					</li>
 					<li>
-						<MovieAdditionalLink to="reviews" state={{ from: location }}>
+						<MovieAdditionalLink to="reviews" state={{ from: location.state?.from }}>
 							Reviews
 						</MovieAdditionalLink>
 					</li>
