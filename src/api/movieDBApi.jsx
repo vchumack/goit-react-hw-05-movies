@@ -4,7 +4,6 @@ axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 const KEY = 'b97b15a6557134236e51fc0964baa8bb';
 
 export function getTrendingMovies() {
-
    return axios.get(`/trending/movie/week?api_key=${KEY}`)
 
 }
@@ -15,4 +14,12 @@ export function getMoviesByQuery(query) {
 
 export function getMovieById(id) {
    return axios.get(`/movie/${id}?api_key=${KEY}`)
+}
+
+export function getMovieCastById(id) {
+   return axios.get(`/movie/${id}/credits?api_key=${KEY}`)
+}
+
+export function getMovieReviewsById(id) {
+   return axios.get(`/movie/${id}/reviews?api_key=${KEY}`)
 }

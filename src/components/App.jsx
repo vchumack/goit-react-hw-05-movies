@@ -1,13 +1,16 @@
-import { Home } from 'pages/Home';
-import { Movies } from 'pages/Movies';
-import { Routes, Route, Outlet } from 'react-router-dom';
+import { lazy } from "react";
+import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout';
-import { MovieDetails } from './MovieDetails';
-// import { useState } from 'react';
+
+
+const Home = lazy(() => import('pages/Home').then(module => ({ ...module, default: module.Home})));
+const Movies = lazy(() => import('pages/Movies').then(module => ({ ...module, default: module.Movies })));
+const Cast = lazy(() => import('./Cast').then(module => ({ ...module, default: module.Cast })));
+const MovieDetails = lazy(() => import('./MovieDetails').then(module => ({ ...module, default: module.MovieDetails })));
+const Reviews = lazy(() => import('./Reviews').then(module => ({ ...module, default: module.Reviews })));
+
 
 export const App = () => {
-  // const [query, setQuery] = useState('');
-
 
   return (
     <Routes>
@@ -18,8 +21,8 @@ export const App = () => {
           path="movies/:movieId"
           element={<MovieDetails/>}
         >
-          <Route path="cast" element={<div>cast</div>} />
-          <Route path="reviews" element={<div>reviews</div>} />
+          <Route path="cast" element={<Cast/>} />
+          <Route path="reviews" element={<Reviews/>} />
         </Route>
         <Route path="*" element={<div>Not Found</div>} />
       </Route>
